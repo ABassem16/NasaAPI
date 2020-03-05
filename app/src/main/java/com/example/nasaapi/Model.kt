@@ -1,6 +1,5 @@
 package com.example.nasaapi
-
-class Model {
+class Model{
     lateinit var copyright: String
     lateinit var date: String
     lateinit var explanation: String
