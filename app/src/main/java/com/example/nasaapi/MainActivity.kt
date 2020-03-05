@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 import java.net.URL
 import kotlin.String as String1
 
@@ -26,7 +27,16 @@ class MainActivity : AppCompatActivity() {
         val strReq=StringRequest(
             Request.Method.GET,
             url,
-            Response.Listener<String1> { response -> textView.text="Response is: ${response.substring(0,500)}" },
+            Response.Listener<String1> {
+                    response ->
+                val strResp=response.toString()
+                val jsonObj:JSONObject=JSONObject(response)
+                val model:Model= Model()
+                model.copyright=jsonObj.getString("copyright")
+                model.date
+                model
+                textView.text=model.copyright
+            },
             Response.ErrorListener { textView.text="Error kal 3ada" }
         )
         req.add(strReq)
