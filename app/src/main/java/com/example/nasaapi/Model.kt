@@ -1,10 +1,5 @@
 package com.example.nasaapi
-
-import android.os.Parcel
-import android.os.Parcelable
-
-class Model
-{
+class Model{
     lateinit var copyright: String
     lateinit var date: String
     lateinit var explanation: String
@@ -13,5 +8,4 @@ class Model
     lateinit var serviceVersion: String
     lateinit var title: String
     lateinit var url: String
-
 }

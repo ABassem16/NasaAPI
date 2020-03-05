@@ -1,17 +1,14 @@
 package com.example.nasaapi
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.DownloadManager
 import android.os.Bundle
-import android.util.Log
-import com.android.volley.Request
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
-import java.net.URL
 import kotlin.String as String1
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val url="https://api.nasa.gov/planetary/apod?api_key=jTcWV0pmMmG6SOjwIGacrJLlDm1Vj5fmZsO0TBMP"
         val req=Volley.newRequestQueue(this)
         val strReq=StringRequest(
-            Request.Method.GET,
+            com.android.volley.Request.Method.GET,
             url,
             Response.Listener<String1> {
                     response ->
@@ -39,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             },
             Response.ErrorListener { textView.text="Error kal 3ada" }
         )
+        val model = Model() //An object to carry api data
         req.add(strReq)
     }
 }
