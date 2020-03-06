@@ -1,12 +1,13 @@
 package com.example.nasaapi
 
-import android.app.DownloadManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 import kotlin.String as String1
 
 
@@ -26,17 +27,18 @@ class MainActivity : AppCompatActivity() {
             url,
             Response.Listener<String1> {
                     response ->
-                val strResp=response.toString()
-                val jsonObj:JSONObject=JSONObject(response)
+                val jsonObj: JSONObject = JSONObject(response)
                 val model:Model= Model()
-                model.copyright=jsonObj.getString("copyright")
-                model.date
-                model
-                textView.text=model.copyright
+                model.date = jsonObj.getString("date")
+                model.explanation = jsonObj.getString("explanation")
+                model.url = jsonObj.getString("url")
+                dateView.text = model.date
+                ContetView.text = model.explanation
+                Picasso.with(this).load(model.url).into(imageview1)
+
             },
-            Response.ErrorListener { textView.text="Error kal 3ada" }
+            Response.ErrorListener { ContetView.text = "Error kal 3ada" }
         )
-        val model = Model() //An object to carry api data
         req.add(strReq)
     }
 }
